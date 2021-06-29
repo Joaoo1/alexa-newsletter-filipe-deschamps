@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 
-import dbConfig from '../app/config/database';
+import dbConfig from '../config/database';
 import NewsLetter from '../app/models/Newsletter';
 import News from '../app/models/News';
 

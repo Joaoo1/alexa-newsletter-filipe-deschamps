@@ -3,7 +3,7 @@ import { MailParser } from 'mailparser';
 
 import StoreNewsLetterService from '../services/StoreNewsLetterService';
 import { getNews, getNewsletterDate } from '../utils/emailBody';
-import mailConfig from '../config/mail';
+import mailConfig from '../../config/mail';
 
 function processMessage(msg) {
   const parser = new MailParser();
