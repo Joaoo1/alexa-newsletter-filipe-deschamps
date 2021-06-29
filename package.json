@@ -1,0 +1,28 @@
+{
+  "name": "api-alexa-newsletter",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "imap": "^0.8.19",
+    "mailparser": "^3.2.0",
+    "sequelize": "^6.6.2",
+    "sqlite3": "^5.0.2"
+  },
+  "scripts": {
+    "dev": "nodemon --exec sucrase-node ./src/server.js",
+    "build": "sucrase ./src -d ./dist --transforms imports",
+    "start": "node dist/server.js"
+  },
+  "devDependencies": {
+    "eslint": "^7.28.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "nodemon": "^2.0.7",
+    "sequelize-cli": "^6.2.0",
+    "sucrase": "^3.18.2"
+  }
+}
