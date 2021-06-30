@@ -43,7 +43,7 @@ function getNews(rawBody = '') {
   let body = rawBody.replace(/(?=Cancelar inscrição).*/gis, '');
 
   body = cleanBody(body);
-  console.log(body);
+
   // Change colon for dot to make alexa speaking more "naturally"
   body = body.replace(/:/g, '.');
 

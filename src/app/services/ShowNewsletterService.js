@@ -2,11 +2,11 @@ import News from '../models/News';
 import Newsletter from '../models/Newsletter';
 import formatDate from '../utils/formatDate';
 
-class ShowLastNewsletterService {
-  async run() {
+class ShownewsletterService {
+  async run(date) {
     const newsLetter = await Newsletter.findOne({
+      where: { date: new Date(date) },
       attributes: ['date'],
-      order: [['date', 'DESC']],
       include: [
         {
           model: News,
@@ -25,4 +25,4 @@ class ShowLastNewsletterService {
     return { news };
   }
 }
-export default new ShowLastNewsletterService();
+export default new ShownewsletterService();
