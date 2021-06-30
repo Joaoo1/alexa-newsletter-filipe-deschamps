@@ -6,13 +6,12 @@ class ShowLastNewsletterService {
   async run() {
     const newsLetter = await Newsletter.findOne({
       attributes: ['date'],
-      order: [['date', 'DESC']],
+      order: [['date', 'DESC'], ['news', 'id', 'ASC']],
       include: [
         {
           model: News,
           as: 'news',
-          attributes: ['newsText'],
-          order: [['id', 'ASC']],
+          attributes: ['id', 'newsText'],
         },
       ],
     });
