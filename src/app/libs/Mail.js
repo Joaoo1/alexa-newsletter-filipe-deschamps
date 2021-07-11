@@ -4,6 +4,7 @@ import { MailParser } from 'mailparser';
 import StoreNewsLetterService from '../services/StoreNewsLetterService';
 import { getNews, getNewsletterDate } from '../utils/emailBody';
 import mailConfig from '../../config/mail';
+import logger from '../utils/Logger';
 
 function processMessage(msg) {
   const parser = new MailParser();
@@ -34,9 +35,11 @@ function initNewImapInstance() {
   }
 
   function checkNewEmails() {
-    console.log('checking new emails');
     imap.seq.search([['FROM', 'newsletter@filipedeschamps.com.br'], 'UNSEEN'], (err, uuids) => {
-      if (err) return; // TODO: Handle error
+      if (err) {
+        logger.error(err);
+        return;
+      }
 
       if (uuids) {
         uuids.forEach((uuid) => {
@@ -52,7 +55,6 @@ function initNewImapInstance() {
   }
 
   imap.once('ready', () => {
-    console.log('imap ready');
     openInbox((err) => {
       if (err) throw err;
     });
@@ -61,7 +63,7 @@ function initNewImapInstance() {
   imap.on('mail', checkNewEmails);
 
   imap.on('error', (err) => {
-    console.log('log err: ', err);
+    logger.error(err);
     imap.destroy();
     initNewImapInstance();
   });
